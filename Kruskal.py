@@ -10,13 +10,13 @@ class Graph:
         self.edges.append((u, v, weight))
                  
     def kruskal(self):
-        mst = set()
+        mst = []
         disjoint_set = {vertex: set(vertex) for vertex in self.vertices}
         sorted_edges = sorted(self.edges, key=lambda edge: edge[2]) # Sort by weights, increasing order
         
         for u, v, weight in sorted_edges:
             if disjoint_set[u].isdisjoint(disjoint_set[v]):
-                mst.add((u, v, weight))
+                mst.append((u, v, weight))
                 disjoint_set = self._union(disjoint_set, u, v)
                 if len(mst) == len(vertices) - 1:
                     break
